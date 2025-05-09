@@ -85,6 +85,7 @@ web_modules/
 
 # Next.js build output
 .next
+.next/cache
 out
 
 # Nuxt.js build / generate output
@@ -125,8 +126,9 @@ dist
 # TernJS port file
 .tern-port
 
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
+# Local development environments & IDE configurations
+.vscode/
+.vscode-test/
 
 # yarn v2
 .yarn/cache
@@ -134,3 +136,7 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# System files from macOS & Windows – Prevents unnecessary system files from being added to the repository
+.DS_Store
+Thumbs.db

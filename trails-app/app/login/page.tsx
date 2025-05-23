@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import Link from "next/link";
 import { loginUser } from "../components/firebaseAuth";
+import "./login.css";
+import { MdOutlineMailOutline } from "react-icons/md";
+import { FaUnlockAlt } from "react-icons/fa";
+import { FaRegEyeSlash } from "react-icons/fa";
+
 
 export default function LoginPage() { 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -26,20 +31,20 @@ export default function LoginPage() {
   };
 
   return (
-    //All Icons are currently replaced by placeholders
-    <div>
-      <header>
+    
+    <div className="login-container">
+      <header className="login-header">
         <span>Logo</span>
         <span>ProfileIcon</span>
       </header>
-      <div>
-        <Link href="/">Go Back</Link>
+      <div className="login-back">
+        <button type="button">Go Back</button>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form className="login-form" onSubmit={handleSubmit}>
         <h1>Welcome back</h1>
         <p>Please enter your details to sign in</p>
         <div>
-          <span>EmailIcon</span>
+          <MdOutlineMailOutline></MdOutlineMailOutline>
           <input 
             type="email" 
             name="email"
@@ -50,7 +55,7 @@ export default function LoginPage() {
           />
         </div>
         <div>
-          <span>PasswordIcon</span>
+          <FaUnlockAlt className="ks"></FaUnlockAlt>
           <input 
             type="password" 
             name="password"
@@ -59,15 +64,15 @@ export default function LoginPage() {
             onChange={handleChange} 
             required
           />
-          <span>Show/Hide</span>
+         <FaRegEyeSlash></FaRegEyeSlash>
         </div>
         <button type="submit">Sign in</button>
       </form>
-      <div>
+      <div className="login-register">
         <span>Haven't got an account yet? </span>
         <Link href="/register">Register here</Link>
       </div>
-      <footer>
+      <footer className="login-footer">
         <span>© 2025 Rappi Tours Inc.</span>
         <Link href="/imprint">Imprint</Link>
       </footer>

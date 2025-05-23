@@ -1,9 +1,30 @@
 'use client';
-import '../globals.css';
-import Link from "next/link";
 
+import { useState } from 'react';
+import Link from "next/link";
+import { loginUser } from "../components/firebaseAuth";
 
 export default function LoginPage() { 
+  const [formData, setFormData] = useState({ email: "", password: "" });
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      await loginUser(formData.email, formData.password);
+      alert("Login erfolgreich!");
+    } catch (error: any) {
+      alert("Fehler beim Login: " + error.message);
+    }
+  };
+
   return (
     //All Icons are currently replaced by placeholders
     <div>
@@ -14,16 +35,30 @@ export default function LoginPage() {
       <div>
         <Link href="/">Go Back</Link>
       </div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Welcome back</h1>
         <p>Please enter your details to sign in</p>
         <div>
           <span>EmailIcon</span>
-          <input type="email" placeholder="Email address" />
+          <input 
+            type="email" 
+            name="email"
+            placeholder="Email address" 
+            value={formData.email} 
+            onChange={handleChange} 
+            required
+          />
         </div>
         <div>
           <span>PasswordIcon</span>
-          <input type="password" placeholder="Password" />
+          <input 
+            type="password" 
+            name="password"
+            placeholder="Password" 
+            value={formData.password} 
+            onChange={handleChange} 
+            required
+          />
           <span>Show/Hide</span>
         </div>
         <button type="submit">Sign in</button>

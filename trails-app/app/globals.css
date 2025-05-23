@@ -165,32 +165,34 @@ html, body {
   align-items: center;
 }
 
-.search-bar-container {
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          transform: translate(-50%, -50%) scale(0);
-          opacity: 0;
-          transition: transform 0.3s ease, opacity 0.3s ease;
-          width: 60%;
-          max-width: 400px;
-          z-index: 2;
-          background: white;
-          border-radius: 20px;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-          overflow: hidden;
-        }
-        .search-bar-container.visible {
-          transform: translate(-50%, -50%) scale(1);
-          opacity: 1;
-        }
-        .search-bar {
-          width: 100%;
-          padding: 8px 16px;
-          border: none;
-          outline: none;
-          font-size: 16px;
-          border-radius: 16px;
-          box-sizing: border-box;
-        }
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+
+.search-bar {
+  width: 100%;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+}
+
 

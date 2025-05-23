@@ -1,14 +1,41 @@
 'use client';
+import '../globals.css';
+import Link from "next/link";
 
-export default function LoginPage() {
+
+export default function LoginPage() { 
   return (
+    //All Icons are currently replaced by placeholders
     <div>
-      <h1>Login Page</h1>
+      <header>
+        <span>Logo</span>
+        <span>ProfileIcon</span>
+      </header>
+      <div>
+        <Link href="/">Go Back</Link>
+      </div>
       <form>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
-        <button type="submit">Login</button>
+        <h1>Welcome back</h1>
+        <p>Please enter your details to sign in</p>
+        <div>
+          <span>EmailIcon</span>
+          <input type="email" placeholder="Email address" />
+        </div>
+        <div>
+          <span>PasswordIcon</span>
+          <input type="password" placeholder="Password" />
+          <span>Show/Hide</span>
+        </div>
+        <button type="submit">Sign in</button>
       </form>
+      <div>
+        <span>Haven't got an account yet? </span>
+        <Link href="/register">Register here</Link>
+      </div>
+      <footer>
+        <span>© 2025 Rappi Tours Inc.</span>
+        <Link href="/imprint">Imprint</Link>
+      </footer>
     </div>
   );
 }

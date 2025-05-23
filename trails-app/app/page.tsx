@@ -9,6 +9,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
+import Link from "next/link";
 
 export default function HomePage() {
   const router = useRouter();
@@ -26,24 +27,15 @@ export default function HomePage() {
       <div className="background-container"></div>
 
       <header className="header">
-        <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-
-        {/* Animated Search Bar */}
-        <div className={`search-bar-container ${showSearch ? 'visible' : ''}`}>
-          <input
-            type="text"
-            placeholder="Search trails..."
-            className="search-bar"
-            autoFocus
-            onBlur={() => setShowSearch(false)}
-          />
-        </div>
-
-        <div className="icons-container">
+        <div className="header-left">
+          <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
           <IoSearch
             className="icon"
             onClick={() => setShowSearch(prev => !prev)}
           />
+        </div>
+
+        <div className="icons-container">
           <MdAccountCircle
             className="icon"
             onClick={() => router.push('/profile')}
@@ -54,6 +46,19 @@ export default function HomePage() {
           />
         </div>
       </header>
+      {showSearch && (
+        <div className="overlay" onClick={() => setShowSearch(false)}>
+          <div className="centered-search" onClick={(e) => e.stopPropagation()}>
+            <input
+              type="text"
+              placeholder="Search trails..."
+              className="search-bar"
+              autoFocus
+              onBlur={() => setShowSearch(false)}
+            />
+          </div>
+        </div>
+      )}
 
       <section className="hero">
         <div className="hero-header">
@@ -92,9 +97,10 @@ export default function HomePage() {
         ))}
       </div>
 
-        <footer className="footer">
-          <p>ⓒ 2025 Rappi Tours Inc. Imprint</p>
-        </footer>
-      </>
-    )
-  }
+      <footer className="footer">
+        <p>ⓒ 2025 Rappi Tours Inc. </p> 
+        <Link href="/imprint">Imprint</Link>
+      </footer>
+    </>
+  )
+}

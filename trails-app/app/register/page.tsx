@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
+import { registerUser } from "../components/firebaseAuth";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -13,9 +14,20 @@ export default function RegisterPage() {
     });
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('User Registered:', formData);
+
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwörter stimmen nicht überein");
+      return;
+    }
+
+    try {
+      await registerUser(formData.email, formData.password);
+      alert("Registrierung erfolgreich!");
+    } catch (error: any) {
+      alert("Fehler bei der Registrierung: " + error.message);
+    }
   };
 
   return (

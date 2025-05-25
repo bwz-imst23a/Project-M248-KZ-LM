@@ -1,80 +1,86 @@
 "use client";
 import AuthGuard from '../../components/AuthGuard';
 import { useRouter } from 'next/navigation';
+import { IoSearch } from "react-icons/io5";
+import { MdAccountCircle } from "react-icons/md";
+import { FaSave } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
+import { CiLogin } from "react-icons/ci";
 
-export default function CreateTrailPage() {
+
+
+import './edit.css';
+
+
+export default function EditTrailPage() {
   const { push, back } = useRouter();
+
   return (
     <AuthGuard>
-    <div>
-      <header>
-        <span>Logo</span>
-        <span>SearchIcon</span>
-        <span>LogoutIcon</span>
-        <span>ProfileIcon</span>
-      </header>
-
-
-      <h1>Edit Trail</h1>
-
-        <label>
-          Trail Name*
-          <input type="text" placeholder="Marin" />
-        </label>
-
-        <label>
-          Date*
-          <div>
-            <input type="text" placeholder="05/10/2025" />
-            <span>CalendarIcon</span>
+      <div className="container">
+        <header className="header">
+          <div className="header-left">
+            <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+            <IoSearch className="icon" />
           </div>
-        </label>
-
-        <label>
-          Time
-          <div>
-            <input type="text" placeholder="12:00 PM" />
-            <span>ClockIcon</span>
+          <div className="icons-container">
+            <MdAccountCircle
+              className="icon"
+              onClick={() => push('/profile')}
+            />
+            <CiLogin
+              className="icon"
+              onClick={() => push('/login')}
+            />
           </div>
-        </label>
+        </header>
 
-        <div>
-          <strong>Route</strong>
-        </div>
+        <main className="form-container">
+          <h1 className="title">Edit Trail</h1>
 
-        <label>
-          Startpoint*
-          <div>
-            <input type="text" placeholder="Marin Headlands (West)" />
-          </div>
-        </label>
+          <form onSubmit={e => e.preventDefault()}>
+            <label className="label">
+              Trail Name*
+              <input type="text" className="input" placeholder="Marin" required />
+            </label>
 
-        <label>
-          Endpoint*
-          <div>
-            <input type="text" placeholder="Marin Headlands (East)" />
-          </div>
-        </label>
+            <label className="label">
+              Date*
+              <div className="input-icon">
+                <input type="date" className="input" required />
+              </div>
+            </label>
 
-<form onSubmit={e => e.preventDefault()}>
-        <div>
-          <button
-            type="button"
-            onClick={(e) => {
-              e.preventDefault();
-              back();
-            }}
-          >
-            <span>CancelIcon</span> Cancel
-          </button>
-          <button
-            type="submit"
-            onClick={(e) => {push("../");}}>
-            <span>SaveIcon</span> Update Trail
-          </button>
-        </div>
-        </form>
-    </div>
+            <label className="label">
+              Time
+              <div className="input-icon">
+                <input type="time" className="input" />
+              </div>
+            </label>
+
+            <div className="section-title">Route</div>
+
+            <label className="label">
+              Startpoint*
+              <input type="text" className="input" placeholder="Marin Headlands (West)" required />
+            </label>
+
+            <label className="label">
+              Endpoint*
+              <input type="text" className="input" placeholder="Marin Headlands (East)" required />
+            </label>
+
+            <div className="formbutton">
+              <button type="button" className="buttons" onClick={back}>
+                <MdOutlineCancel></MdOutlineCancel> Cancel
+              </button>
+              <button type="submit" className="buttons" onClick={() => push("../")}>
+                <FaSave></FaSave> Update Trail
+              </button>
+            </div>
+          </form>
+        </main>
+      </div>
     </AuthGuard>
   );
 }

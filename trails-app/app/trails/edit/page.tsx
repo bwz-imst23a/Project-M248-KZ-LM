@@ -1,19 +1,28 @@
-"use client";
+'use client';
+
 import AuthGuard from '../../components/AuthGuard';
 import { useRouter } from 'next/navigation';
 import { IoSearch } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
-import { CiLogin } from "react-icons/ci";
-
-
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { useState, useEffect } from "react";
+import { auth, logoutUser } from "../../lib/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 import './edit.css';
 
-
 export default function EditTrailPage() {
-  const { push, back } = useRouter();
+  const router = useRouter();
+  const [user, setUser] = useState<null | any>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
 
   return (
     <AuthGuard>
@@ -26,12 +35,23 @@ export default function EditTrailPage() {
           <div className="icons-container">
             <MdAccountCircle
               className="icon"
-              onClick={() => push('/profile')}
+              onClick={() => router.push('/profile')}
             />
-            <CiLogin
-              className="icon"
-              onClick={() => push('/login')}
-            />
+
+            {!user ? (
+              <CiLogin
+                className="icon"
+                onClick={() => router.push('/login')}
+              />
+            ) : (
+              <CiLogout
+                className="icon"
+                onClick={async () => {
+                  await logoutUser();
+                  setUser(null);
+                }}
+              />
+            )}
           </div>
         </header>
 
@@ -71,10 +91,10 @@ export default function EditTrailPage() {
             </label>
 
             <div className="formbutton">
-              <button type="button" className="buttons" onClick={back}>
+              <button type="button" className="buttons" onClick={() => router.back()}>
                 <MdOutlineCancel></MdOutlineCancel> Cancel
               </button>
-              <button type="submit" className="buttons" onClick={() => push("../")}>
+              <button type="submit" className="buttons" onClick={() => router.push("../")}>
                 <FaSave></FaSave> Update Trail
               </button>
             </div>

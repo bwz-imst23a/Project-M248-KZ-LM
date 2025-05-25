@@ -1,15 +1,26 @@
 'use client';
+
 import { useRouter } from "next/navigation";
 import './imprint.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IoSearch } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
-import { CiLogin } from "react-icons/ci";
-
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, logoutUser } from "../lib/firebaseConfig";
 
 export default function ImprintPage() {
   const router = useRouter();
   const [showSearch, setShowSearch] = useState(false);
+  const [user, setUser] = useState<null | any>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
   return (
     <>
       <div className="background-container"></div>
@@ -27,12 +38,24 @@ export default function ImprintPage() {
             className="icon"
             onClick={() => router.push('/profile')}
           />
-          <CiLogin
-            className="icon"
-            onClick={() => router.push('/login')}
-          />
+
+          {!user ? (
+            <CiLogin
+              className="icon"
+              onClick={() => router.push('/login')}
+            />
+          ) : (
+            <CiLogout
+              className="icon"
+              onClick={async () => {
+                await logoutUser();
+                setUser(null);
+              }}
+            />
+          )}
         </div>
       </header>
+
       {showSearch && (
         <div className="overlay" onClick={() => setShowSearch(false)}>
           <div className="centered-search" onClick={(e) => e.stopPropagation()}>
@@ -45,13 +68,14 @@ export default function ImprintPage() {
           </div>
         </div>
       )}
+
       <div className="imprintcontent">
         <button className="cta" onClick={() => router.back()}>
-        <span>Go Back</span>
-        <svg width="15px" height="10px" viewBox="0 0 13 10">
-          <path d="M1,5 L11,5"></path>
-        <polyline points="8 1 12 5 8 9"></polyline>
-        </svg>
+          <span>Go Back</span>
+          <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
         </button>
         <h1>Imprint</h1>
         <p>

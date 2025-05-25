@@ -8,7 +8,6 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 
-
 export default function LoginPage() { 
   const [formData, setFormData] = useState({ email: "", password: "" });
 

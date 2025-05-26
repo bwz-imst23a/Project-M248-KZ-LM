@@ -6,7 +6,9 @@ import { db } from "../lib/firebaseConfig";
 export const fetchTrails = async (userId: string) => {
   if (!userId) return [];
   const querySnapshot = await getDocs(collection(db, `users/${userId}/trails`));
-  return querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  const trails = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+  
+  return sortTrails(trails);
 };
 
 export const addTrail = async (userId: string, trailName: string, date: string) => {
@@ -35,4 +37,34 @@ export const deleteTrail = async (userId: string, trailId: string) => {
   if (!userId) return;
 
   await deleteDoc(doc(db, `users/${userId}/trails`, trailId));
+};
+
+export const sortTrails = (trails: any[]) => {
+  return trails.sort((a, b) => {
+    const today = new Date().setHours(0, 0, 0, 0);
+    const dateA = new Date(a.date).setHours(0, 0, 0, 0);
+    const dateB = new Date(b.date).setHours(0, 0, 0, 0);
+
+    const isTodayA = dateA === today;
+    const isTodayB = dateB === today;
+    const isFutureA = dateA > today;
+    const isFutureB = dateB > today;
+
+    if (isTodayA && !isTodayB) return -1;
+    if (isTodayB && !isTodayA) return 1;
+
+    if (isFutureA && !isFutureB) return -1;
+    if (isFutureB && !isFutureA) return 1;
+    if (isFutureA && isFutureB) {
+      const diff = dateA - dateB;
+      return diff !== 0 ? diff : a.name.localeCompare(b.name);
+    }
+
+    if (!isTodayA && !isFutureA && !isTodayB && !isFutureB) {
+      const diff = dateB - dateA;
+      return diff !== 0 ? diff : a.name.localeCompare(b.name);
+    }
+
+    return a.name.localeCompare(b.name);
+  });
 };

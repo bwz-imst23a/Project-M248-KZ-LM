@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
-import { registerUser } from "../components/firebaseAuth";
+import { registerUser } from "../components/FirebaseAuth";
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });

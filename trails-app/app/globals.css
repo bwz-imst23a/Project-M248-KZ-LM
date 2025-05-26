@@ -184,8 +184,6 @@ html, body {
   z-index: 1000;
 }
 
-
-
 .search-bar {
   width: 100%;
   padding: 10px 16px;
@@ -195,4 +193,14 @@ html, body {
   border-radius: 16px;
 }
 
+.past-trail {
+  background: rgba(150, 150, 150, 0.4);
+}
 
+.today-trail {
+  background: rgba(0, 112, 243, 0.4);
+}
+
+.future-trail {
+  background: rgba(0, 200, 100, 0.4);
+}

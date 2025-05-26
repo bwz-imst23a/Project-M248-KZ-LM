@@ -1,9 +1,13 @@
-import { auth, createUser, signInUser } from "../lib/firebaseConfig";
+import { auth, createUser, signInUser, logoutUser } from "../lib/firebaseConfig";
 
 export async function registerUser(email: string, password: string) {
   try {
     const userCredential = await createUser(auth, email, password);
     console.log("User Registered:", userCredential.user);
+
+    await logoutUser();
+    console.log("User signed out after registration");
+
     return userCredential.user;
   } catch (error: any) {
     console.error("Registrierungsfehler:", error);

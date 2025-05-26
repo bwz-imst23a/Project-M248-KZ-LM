@@ -1,19 +1,47 @@
-"use client";
+'use client';
+
 import AuthGuard from '../../components/AuthGuard';
 import { useRouter } from 'next/navigation';
-import { IoSearch } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
-import { CiLogin } from "react-icons/ci";
-
-
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { useState, useEffect } from "react";
+import { auth, logoutUser } from "../../lib/firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { addTrail } from "../../components/FirestoreTrails";
 
 import './create.css';
-
+import Link from 'next/link';
 
 export default function CreateTrailPage() {
-  const { push, back } = useRouter();
+  const router = useRouter();
+  const [user, setUser] = useState<null | any>(null);
+  const [trailName, setTrailName] = useState('');
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  const handleSave = async () => {
+    if (!user) {
+      alert('Bitte anmelden, um einen Trail zu speichern.');
+      return;
+    }
+    
+    try {
+      await addTrail(user.uid, trailName, date);
+      alert('Trail erfolgreich gespeichert!');
+      router.push("../");
+    } catch (error) {
+      console.error("Fehler beim Speichern des Trails:", error);
+      alert("Fehler beim Speichern des Trails.");
+    }
+  };
 
   return (
     <AuthGuard>
@@ -21,65 +49,74 @@ export default function CreateTrailPage() {
         <header className="header">
           <div className="header-left">
             <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-            <IoSearch className="icon" />
           </div>
           <div className="icons-container">
             <MdAccountCircle
               className="icon"
-              onClick={() => push('/profile')}
+              onClick={() => router.push('/profile')}
             />
-            <CiLogin
-              className="icon"
-              onClick={() => push('/login')}
-            />
+
+            {!user ? (
+              <CiLogin
+                className="icon"
+                onClick={() => router.push('/login')}
+              />
+            ) : (
+              <CiLogout
+                className="icon"
+                onClick={async () => {
+                  await logoutUser();
+                  setUser(null);
+                }}
+              />
+            )}
           </div>
         </header>
 
         <main className="form-container">
           <h1 className="title">Create Trail</h1>
 
-          <form onSubmit={e => e.preventDefault()}>
+          <form onSubmit={(e) => e.preventDefault()}>
             <label className="label">
               Trail Name*
-              <input type="text" className="input" placeholder="Please enter a trail name" required />
+              <input
+                type="text"
+                className="input"
+                placeholder="Please enter a trail name"
+                required
+                value={trailName}
+                onChange={(e) => setTrailName(e.target.value)}
+              />
             </label>
 
             <label className="label">
               Date*
               <div className="input-icon">
-                <input type="date" className="input" required />
+                <input
+                  type="date"
+                  className="input"
+                  required
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
               </div>
-            </label>
-
-            <label className="label">
-              Time
-              <div className="input-icon">
-                <input type="time" className="input" />
-              </div>
-            </label>
-
-            <div className="section-title">Route</div>
-
-            <label className="label">
-              Startpoint*
-              <input type="text" className="input" placeholder="Please enter a destination" required />
-            </label>
-
-            <label className="label">
-              Endpoint*
-              <input type="text" className="input" placeholder="Please enter a destination" required />
             </label>
 
             <div className="formbutton">
-              <button type="button" className="buttons" onClick={back}>
-                <MdOutlineCancel></MdOutlineCancel> Cancel
+              <button type="button" className="buttons" onClick={() => router.back()}>
+                <MdOutlineCancel /> Cancel
               </button>
-              <button type="submit" className="buttons" onClick={() => push("../")}>
-                <FaSave></FaSave> Save Trail
+              <button type="submit" className="buttons" onClick={handleSave}> 
+                <FaSave /> Save Trail
               </button>
             </div>
           </form>
         </main>
+
+        <footer className="footer">
+          <p>ⓒ 2025 Rappi Tours Inc.</p> 
+          <Link href="/imprint">Imprint</Link>
+        </footer>
       </div>
     </AuthGuard>
   );

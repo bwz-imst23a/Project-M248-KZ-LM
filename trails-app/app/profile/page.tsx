@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import AuthGuard from "../components/AuthGuard";
-import { IoSearch } from "react-icons/io5";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { auth, logoutUser } from "../lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
@@ -29,10 +28,6 @@ function Profile() {
         <header className="header">
           <div className="header-left">
             <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-            <IoSearch
-              className="icon"
-              onClick={() => setShowSearch(prev => !prev)}
-            />
           </div>
 
           <div className="icons-container">

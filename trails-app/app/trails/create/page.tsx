@@ -30,7 +30,6 @@ export default function CreateTrailPage() {
         <header className="header">
           <div className="header-left">
             <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-            <IoSearch className="icon" />
           </div>
           <div className="icons-container">
             <MdAccountCircle

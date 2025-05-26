@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import './imprint.css';
 import { useState, useEffect } from "react";
-import { IoSearch } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { onAuthStateChanged } from "firebase/auth";
@@ -27,10 +26,6 @@ export default function ImprintPage() {
       <header className="header">
         <div className="header-left">
           <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-          <IoSearch
-            className="icon"
-            onClick={() => setShowSearch(prev => !prev)}
-          />
         </div>
 
         <div className="icons-container">

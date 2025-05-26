@@ -2,9 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { IoSearch } from "react-icons/io5";
 import { MdAccountCircle } from "react-icons/md";
-import { CiLogin, CiCloud, CiLogout } from "react-icons/ci";
+import { CiLogin, CiLogout } from "react-icons/ci";
 import { FiEdit2 } from "react-icons/fi";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
@@ -12,6 +11,7 @@ import Link from "next/link";
 import { auth } from "../app/lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { logoutUser } from "../app/lib/firebaseConfig";
+import { IoMdAddCircleOutline } from "react-icons/io";
 
 export default function HomePage() {
   const router = useRouter();
@@ -39,10 +39,6 @@ export default function HomePage() {
       <header className="header">
         <div className="header-left">
           <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
-          <IoSearch
-            className="icon"
-            onClick={() => setShowSearch(prev => !prev)}
-          />
         </div>
 
         <div className="icons-container">
@@ -85,6 +81,13 @@ export default function HomePage() {
       <section className="hero">
         <div className="hero-header">
           <h1 className="hero-title">RappiTours</h1>
+          {user && (
+            <IoMdAddCircleOutline
+              className="add-icon"
+              onClick={() => router.push('/trails/create')}
+              style={{ cursor: 'pointer', marginLeft: '10px' }}
+            />
+          )}
         </div>
         {!user ? (
           <p className="login-prompt">
@@ -97,7 +100,6 @@ export default function HomePage() {
                 <div className="trail">
                   <span className="trail-text">{trail}</span>
                   <div className="trail-actions">
-                    <CiCloud className="trail-icon" />
                     <FiEdit2
                       className="edit-icon"
                       onClick={() =>

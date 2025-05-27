@@ -12,7 +12,7 @@ import { auth } from "../app/lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { logoutUser } from "../app/lib/firebaseConfig";
 import { IoMdAddCircleOutline } from "react-icons/io";
-import { fetchTrails, sortTrails } from "../app/components/FirestoreTrails";
+import { fetchTrails, sortTrails, deleteTrail } from "../app/components/FirestoreTrails";
 
 export default function HomePage() {
   const router = useRouter();
@@ -42,6 +42,19 @@ export default function HomePage() {
     if (trailDate === today) return "today-trail";
     if (trailDate > today) return "future-trail";
     return "past-trail";
+  };
+
+  const handleDelete = async (trailId: string) => {
+    if (!user) return;
+    
+    const confirmed = window.confirm("Möchtest du diesen Trail wirklich löschen?");
+    if (!confirmed) return;
+
+    await deleteTrail(user.uid, trailId);
+    alert("Trail erfolgreich gelöscht!");
+
+    const userTrails = await fetchTrails(user.uid);
+    setTrails(sortTrails(userTrails));
   };
 
   return (
@@ -81,7 +94,7 @@ export default function HomePage() {
                   <span className="trail-text">{trail.name}</span>
                   <div className="trail-actions">
                     <FiEdit2 className="edit-icon" onClick={() => router.push(`/trails/edit/${trail.id}`)} />
-                    <RiDeleteBin5Fill className="delete-icon" onClick={() => router.push('#')} />
+                    <RiDeleteBin5Fill className="delete-icon" onClick={() => handleDelete(trail.id)} />
                     <IoIosArrowDown className={`arrow-icon ${expandedTrail === trail.id ? 'rotated' : ''}`} onClick={() => toggleTrail(trail.id)} />
                   </div>
                 </div>

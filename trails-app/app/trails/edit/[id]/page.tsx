@@ -1,7 +1,7 @@
 'use client';
 
-import AuthGuard from '../../../components/AuthGuard';
-import { useRouter, useParams } from 'next/navigation';
+import AuthGuard from "../../../components/AuthGuard";
+import { useRouter, useParams } from "next/navigation";
 import { MdAccountCircle } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
@@ -11,7 +11,7 @@ import { auth, logoutUser } from "../../../lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { fetchTrails, editTrail } from "../../../components/FirestoreTrails";
 
-import './edit.css';
+import "./edit.css";
 
 export default function EditTrailPage() {
   const router = useRouter();
@@ -35,7 +35,7 @@ export default function EditTrailPage() {
   if (!user || !trail || !id) return;
 
   await editTrail(user.uid, id, trail.name, trail.date);
-  alert("Trail erfolgreich aktualisiert!");
+  alert("Trail successfully updated!");
   router.push("../../");
 };
 
@@ -81,7 +81,7 @@ export default function EditTrailPage() {
               </div>
             </form>
           ) : (
-            <p>Lade Trail-Daten...</p>
+            <p>Load trail data...</p>
           )}
         </main>
       </div>

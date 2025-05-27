@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from "react";
 import Link from "next/link";
 import { loginUser } from "../components/FirebaseAuth";
 import "./login.css";
@@ -23,9 +23,9 @@ export default function LoginPage() {
 
     try {
       await loginUser(formData.email, formData.password);
-      alert("Login erfolgreich!");
+      alert("Login successful!");
     } catch (error: any) {
-      alert("Fehler beim Login: " + error.message);
+      alert("Login error: " + error.message);
     }
   };
 

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import { MdAccountCircle } from "react-icons/md";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { FiEdit2 } from "react-icons/fi";
@@ -47,11 +47,11 @@ export default function HomePage() {
   const handleDelete = async (trailId: string) => {
     if (!user) return;
     
-    const confirmed = window.confirm("Möchtest du diesen Trail wirklich löschen?");
+    const confirmed = window.confirm("Do you really want to delete this trail?");
     if (!confirmed) return;
 
     await deleteTrail(user.uid, trailId);
-    alert("Trail erfolgreich gelöscht!");
+    alert("Trail successfully deleted!");
 
     const userTrails = await fetchTrails(user.uid);
     setTrails(sortTrails(userTrails));

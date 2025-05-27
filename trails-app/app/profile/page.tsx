@@ -64,10 +64,10 @@ function Profile() {
 
         <div className="profile-content">
           <button type="button" onClick={() => router.back()} className="cta">Go Back</button>
-          <h2>Profil</h2>
+          <h2>Profile</h2>
           <div>
-            <label>E-Mail</label>
-            <div>{email ? email : "Nicht angemeldet"}</div>
+            <label>E-mail</label>
+            <div>{email ? email : "Not logged in"}</div>
           </div>
         </div>
       </>

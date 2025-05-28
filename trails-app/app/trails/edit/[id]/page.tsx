@@ -13,6 +13,8 @@ import { fetchTrails, editTrail } from "../../../components/FirestoreTrails";
 
 import "./edit.css";
 
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+
 export default function EditTrailPage() {
   const router = useRouter();
   const id = String(useParams().id || "");

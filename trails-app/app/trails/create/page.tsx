@@ -14,6 +14,8 @@ import { addTrail } from "../../components/FirestoreTrails";
 import "./create.css";
 import Link from "next/link";
 
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+
 export default function CreateTrailPage() {
   const router = useRouter();
   const [user, setUser] = useState<null | any>(null);

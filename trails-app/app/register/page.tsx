@@ -4,6 +4,9 @@ import { useState } from "react";
 import Link from "next/link";
 import { registerUser } from "../components/FirebaseAuth";
 
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+// Bitte alle noch nicht vorhandenen Elemente dieser Seite hinzufügen
+
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
 

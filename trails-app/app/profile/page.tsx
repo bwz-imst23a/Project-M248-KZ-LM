@@ -7,7 +7,9 @@ import { CiLogin, CiLogout } from "react-icons/ci";
 import { auth, logoutUser } from "../lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 
-function Profile() {
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+
+function Profile() {  // Wieso ist hier der 'export default' nicht auf dieser Zeile, sondern erst am Ende der Datei? Bei allen anderen Seiten ist dies anders. Wurde dies mit AI gemacht und wiederum nicht genug gut aufgepasst?
   const router = useRouter();
   const [email, setEmail] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);

@@ -1,3 +1,8 @@
+/* Bitte in der :root-Klasse alle Farben korrekt als Variablen speichern, wie sie per Farbrad ausgewählt wurden.
+   Auch die Schriftart und die verschiedenen Schriftgrössen sollen hier bereits als Variablen gespeichert
+   werden (gemäss den Schriftarten und Schriftgrössen im Mockup).
+   Der Background für die Desktopversion muss noch hinzugefügt werden (im 'public'-Ordner) und hier unter der
+   Bedingung der Screen-Grösse verwendet werden. */
 :root {
   --background: url('/Mobile_Background.png') center/cover no-repeat;
   --foreground: black;
@@ -11,7 +16,7 @@
 html, body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, sans-serif;
+  font-family: Arial, sans-serif; /* An solchen Stellen dann zum Beispiel die definierte Variable für die Schriftart benutzen. */
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -45,7 +50,7 @@ html, body {
   background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* An solchen Stellen dann zum Beispiel die definierten Variablen für die Farbe benutzen. */
   z-index: 1;
 }
 
@@ -61,8 +66,8 @@ html, body {
 }
 
 .icon {
-  font-size: 24px;
-  color: black;
+  font-size: 24px; /* Hier zum Beispiel die definierte Variable für die Schriftgrösse benutzen. */
+  color: black; /* Auch hier wieder dasselbe mit den Farben. */
   cursor: pointer;
   padding-right: 5px;
 }

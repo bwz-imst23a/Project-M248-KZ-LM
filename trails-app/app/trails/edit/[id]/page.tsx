@@ -12,8 +12,8 @@ import { onAuthStateChanged } from "firebase/auth";
 import { fetchTrails, editTrail } from "../../../components/FirestoreTrails";
 
 import "./edit.css";
+import Link from "next/link";
 
-// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function EditTrailPage() {
   const router = useRouter();
@@ -59,8 +59,11 @@ export default function EditTrailPage() {
         </header>
 
         <main className="form-container">
+            <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg></button>
           <h1 className="title">Edit Trail</h1>
-
           {trail ? (
             <form onSubmit={(e) => e.preventDefault()}>
               <label className="label">
@@ -86,6 +89,10 @@ export default function EditTrailPage() {
             <p>Load trail data...</p>
           )}
         </main>
+        <footer className="profile-footer">
+        <span>© 2025 Rappi Tours Inc.</span>
+        <Link href="/imprint" className="imprint-link">Imprint</Link>
+      </footer>
       </div>
     </AuthGuard>
   );

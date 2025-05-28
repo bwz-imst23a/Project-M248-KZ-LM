@@ -1,3 +1,134 @@
-/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
+.profilepagecontent {
+    margin-top: 160px;
+    margin-left: 20px;
+    margin-right:20px;
+}
 
-/* Styling bitte noch implementieren. */
+.mail {
+    max-width:329.2px;
+}
+
+.imprint-link {
+  color: var(--background);
+  text-decoration: underline;
+}
+
+.cta {
+  position: relative;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: var(--past-trail-color);
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--today-trail-color);
+  padding-right: 10px;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: var(--today-trail-color);
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+
+.cta:hover:before {
+  width: 100%;
+  background: var(--past-trail-color);
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
+
+.profile-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 0 16px;
+  background: var(--background);
+}
+
+.profile-footer {
+  margin-top: auto;
+  padding: 24px 0 10px 0;
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  color: var(--footer-text);
+  font-size: 14px;
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0 16px 0;
+  background: var(--header-bg);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  margin-top: 16px;
+}
+
+.profile-back {
+  margin-bottom: 16px;
+  align-self: flex-start;
+}
+.profile-back button {
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  font-size: 18px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.profile-content label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--background);
+}
+
+.profile-content div {
+  font-size: 1rem;
+  color: var(--background);
+}

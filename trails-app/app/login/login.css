@@ -1,5 +1,17 @@
 /* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
 
+/* Styling bitte noch implementieren. */
+
+.login-container {
+    margin-top: 160px;
+    margin-left: 20px;
+    margin-right:20px;
+}
+
+.mail {
+    max-width:329.2px;
+}
+
 .cta {
   position: relative;
   padding: 12px 18px;
@@ -57,15 +69,6 @@
   transform: scale(0.95);
 }
 
-.login-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  padding: 0 16px;
-  background: var(--background);
-}
 
 .login-header {
   display: flex;
@@ -148,6 +151,9 @@
   margin: 18px 0 0 0;
   text-align: center;
   font-size: 15px;
+  display:flex;
+  justify-content: center;
+    gap: 12px;
 }
 
 .login-register a {
@@ -169,6 +175,3 @@
   color: var(--footer-text);
   text-decoration: underline;
 }
-
-
-

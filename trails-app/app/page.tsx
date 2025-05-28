@@ -69,11 +69,10 @@ export default function HomePage() {
         </div>
 
         <div className="icons-container">
-          <MdAccountCircle className="icon" onClick={() => router.push('/profile')} />
           {!user ? (
             <CiLogin className="icon" onClick={() => router.push('/login')} />
           ) : (
-            <CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); }} />
+            <><MdAccountCircle className="icon" onClick={() => router.push('/profile')} /><CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); } } /></>
           )}
         </div>
       </header>

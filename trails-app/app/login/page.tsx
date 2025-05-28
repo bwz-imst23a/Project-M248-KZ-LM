@@ -7,11 +7,14 @@ import "./login.css";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+
 
 // Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function LoginPage() { 
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const router = useRouter();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -32,19 +35,24 @@ export default function LoginPage() {
   };
 
   return (
-    
+    <>
+        <div className="background-container"></div>
+          <header className="header">
+            <div className="header-left">
+              <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+            </div>
+          </header>
     <div className="login-container">
-      <header className="login-header">
-        <span>Logo</span>
-        <span>ProfileIcon</span>
-      </header>
-      <div className="login-back">
-        <button type="button">Go Back</button>
+      <div>
+        <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg></button>
       </div>
       <form className="login-form" onSubmit={handleSubmit}>
         <h1>Welcome back</h1>
         <p>Please enter your details to sign in</p>
-        <div>
+        <div className="mail">
           <MdOutlineMailOutline></MdOutlineMailOutline>
           <input 
             type="email" 
@@ -78,5 +86,6 @@ export default function LoginPage() {
         <Link href="/imprint">Imprint</Link>
       </footer>
     </div>
+    </>
   );
 }

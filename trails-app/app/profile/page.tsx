@@ -6,10 +6,11 @@ import AuthGuard from "../components/AuthGuard";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { auth, logoutUser } from "../lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
+import "./profile.css";
+import Link from "next/link";
 
-// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
-function Profile() {  // Wieso ist hier der 'export default' nicht auf dieser Zeile, sondern erst am Ende der Datei? Bei allen anderen Seiten ist dies anders. Wurde dies mit AI gemacht und wiederum nicht genug gut aufgepasst?
+export default function Profile() {  
   const router = useRouter();
   const [email, setEmail] = useState<string | null>(null);
   const [showSearch, setShowSearch] = useState(false);
@@ -26,7 +27,6 @@ function Profile() {  // Wieso ist hier der 'export default' nicht auf dieser Ze
   return (
     <AuthGuard>
       <>
-        <div className="background-container"></div>
         <header className="header">
           <div className="header-left">
             <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
@@ -49,32 +49,25 @@ function Profile() {  // Wieso ist hier der 'export default' nicht auf dieser Ze
             )}
           </div>
         </header>
-
-        {showSearch && (
-          <div className="overlay" onClick={() => setShowSearch(false)}>
-            <div className="centered-search" onClick={(e) => e.stopPropagation()}>
-              <input
-                type="text"
-                placeholder="Search trails..."
-                className="search-bar"
-                autoFocus
-                onBlur={() => setShowSearch(false)}
-              />
-            </div>
-          </div>
-        )}
-
+      <div className="profilepagecontent">
         <div className="profile-content">
-          <button type="button" onClick={() => router.back()} className="cta">Go Back</button>
+        <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg></button>
           <h2>Profile</h2>
           <div>
             <label>E-mail</label>
             <div>{email ? email : "Not logged in"}</div>
           </div>
         </div>
+      </div>
+      <footer className="profile-footer">
+        <span>© 2025 Rappi Tours Inc.</span>
+        <Link href="/imprint" className="imprint-link">Imprint</Link>
+      </footer>
       </>
     </AuthGuard>
   );
 }
 
-export default Profile;

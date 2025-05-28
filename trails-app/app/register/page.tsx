@@ -3,12 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { registerUser } from "../components/FirebaseAuth";
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { MdAccountCircle, MdOutlineMailOutline } from "react-icons/md";
+import { useRouter } from "next/navigation";
+import "./register.css";
+import { FaRegEyeSlash, FaUnlockAlt } from "react-icons/fa";
+
 
 // Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 // Bitte alle noch nicht vorhandenen Elemente dieser Seite hinzufügen
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
+  const router = useRouter();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -34,21 +41,25 @@ export default function RegisterPage() {
   };
 
   return (
-    //All Icons are currently replaced by placeholders
-    <div>
-      <header>
-        <span>Logo</span>
-        <span>LogoutIcon</span>
-        <span>ProfileIcon</span>
-      </header>
+    <>
+    <div className="background-container"></div>
+          <header className="header">
+            <div className="header-left">
+              <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+            </div>
+          </header>
+    <div className="registercontent">
       <div>
-        <Link href="/">Go Back</Link>
+        <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg></button>
       </div>
       <h1>Welcome back</h1>
       <p>Please enter your details to sign in</p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <span>EmailIcon</span>
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="mail">
+          <MdOutlineMailOutline></MdOutlineMailOutline>
           <input
             type="email"
             name="email"
@@ -59,7 +70,7 @@ export default function RegisterPage() {
           />
         </div>
         <div>
-          <span>PasswordIcon</span>
+          <FaUnlockAlt className="ks"></FaUnlockAlt>
           <input
             type="password"
             name="password"
@@ -68,10 +79,10 @@ export default function RegisterPage() {
             onChange={handleChange}
             required
           />
-          <span>Show/Hide</span>
+          <FaRegEyeSlash></FaRegEyeSlash>
         </div>
         <div>
-          <span>PasswordIcon</span>
+          <FaUnlockAlt></FaUnlockAlt>
           <input
             type="password"
             name="confirmPassword"
@@ -80,18 +91,19 @@ export default function RegisterPage() {
             onChange={handleChange}
             required
           />
-          <span>Show/Hide</span>
+          <FaRegEyeSlash></FaRegEyeSlash>
         </div>
         <button type="submit">Sign up</button>
       </form>
-      <div>
+      <div className="register-login">
         <span>Already have an account? </span>
         <Link href="/login">Log in here</Link>
       </div>
-      <footer>
+      <footer className="register-footer">
         <span>© 2025 Rappi Tours Inc.</span>
         <Link href="/imprint">Imprint</Link>
       </footer>
     </div>
+    </>
   );
 }

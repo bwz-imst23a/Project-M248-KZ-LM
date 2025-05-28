@@ -1,7 +1,7 @@
 'use client';
 
-import AuthGuard from '../../components/AuthGuard';
-import { useRouter } from 'next/navigation';
+import AuthGuard from "../../components/AuthGuard";
+import { useRouter } from "next/navigation";
 import { MdAccountCircle } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
@@ -11,8 +11,10 @@ import { auth, logoutUser } from "../../lib/firebaseConfig";
 import { onAuthStateChanged } from "firebase/auth";
 import { addTrail } from "../../components/FirestoreTrails";
 
-import './create.css';
-import Link from 'next/link';
+import "./create.css";
+import Link from "next/link";
+
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function CreateTrailPage() {
   const router = useRouter();
@@ -29,17 +31,17 @@ export default function CreateTrailPage() {
 
   const handleSave = async () => {
     if (!user) {
-      alert('Bitte anmelden, um einen Trail zu speichern.');
+      alert("Please log in to save a trail.");
       return;
     }
     
     try {
       await addTrail(user.uid, trailName, date);
-      alert('Trail erfolgreich gespeichert!');
+      alert("Trail successfully saved!");
       router.push("../");
     } catch (error) {
-      console.error("Fehler beim Speichern des Trails:", error);
-      alert("Fehler beim Speichern des Trails.");
+      console.error("Error saving the trail: ", error);
+      alert("Error saving the trail.");
     }
   };
 

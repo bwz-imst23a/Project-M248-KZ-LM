@@ -1,4 +1,5 @@
-/* Main container */
+/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -8,7 +9,6 @@
   background: var(--background);
 }
 
-/* Header */
 .header {
   position: fixed;
   top: 0;

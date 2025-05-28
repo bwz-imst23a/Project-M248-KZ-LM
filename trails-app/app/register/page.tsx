@@ -1,8 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from "react";
 import Link from "next/link";
 import { registerUser } from "../components/FirebaseAuth";
+
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+// Bitte alle noch nicht vorhandenen Elemente dieser Seite hinzufügen
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
@@ -18,15 +21,15 @@ export default function RegisterPage() {
     event.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwörter stimmen nicht überein");
+      alert("Passwords do not match");
       return;
     }
 
     try {
       await registerUser(formData.email, formData.password);
-      alert("Registrierung erfolgreich!");
+      alert("Registration successful!");
     } catch (error: any) {
-      alert("Fehler bei der Registrierung: " + error.message);
+      alert("Error during registration: " + error.message);
     }
   };
 

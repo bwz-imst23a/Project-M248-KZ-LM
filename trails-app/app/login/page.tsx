@@ -1,12 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState } from "react";
 import Link from "next/link";
 import { loginUser } from "../components/FirebaseAuth";
 import "./login.css";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function LoginPage() { 
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -23,9 +25,9 @@ export default function LoginPage() {
 
     try {
       await loginUser(formData.email, formData.password);
-      alert("Login erfolgreich!");
+      alert("Login successful!");
     } catch (error: any) {
-      alert("Fehler beim Login: " + error.message);
+      alert("Login error: " + error.message);
     }
   };
 

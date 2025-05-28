@@ -8,6 +8,8 @@ import { CiLogin, CiLogout } from "react-icons/ci";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, logoutUser } from "../lib/firebaseConfig";
 
+// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
+
 export default function ImprintPage() {
   const router = useRouter();
   const [showSearch, setShowSearch] = useState(false);

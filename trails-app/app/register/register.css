@@ -1,15 +1,11 @@
-/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
-
-/* Styling bitte noch implementieren. */
-
 .registercontent {
     margin-top: 160px;
     margin-left: 20px;
-    margin-right:20px;
+    margin-right: 20px;
 }
 
 .mail {
-    max-width:329.2px;
+    max-width: 329.2px;
 }
 
 .cta {
@@ -28,7 +24,7 @@
   left: 0;
   display: block;
   border-radius: 50px;
-  background: #b1dae7;
+  background: var(--past-trail-color);
   width: 45px;
   height: 45px;
   transition: all 0.3s ease;
@@ -36,11 +32,11 @@
 
 .cta span {
   position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #234567;
+  color: var(--color-go-back);
   padding-right: 10px;
 }
 
@@ -58,7 +54,7 @@
 
 .cta:hover:before {
   width: 100%;
-  background: #b1dae7;
+  background: var(--past-trail-color);
 }
 
 .cta:hover svg {
@@ -98,7 +94,7 @@
   background: transparent;
   border: none;
   color: var(--foreground);
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-family: inherit;
   cursor: pointer;
   padding: 0;
@@ -116,14 +112,14 @@
 
 .register-form h1 {
   margin: 0 0 4px 0;
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 600;
 }
 
 .register-form p {
   margin: 0 0 12px 0;
   color: #888;
-  font-size: 1rem;
+  font-size: var(--font-size-xxl);
 }
 
 .register-form > div {
@@ -138,9 +134,9 @@
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   outline: none;
-  background: rgba(255,255,255,0.7);
+  background: rgba(255, 255, 255, 0.7);
 }
 
 .register-form button[type="submit"] {
@@ -150,7 +146,7 @@
   border: none;
   background: #222;
   color: #fff;
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-weight: 600;
   cursor: pointer;
   width: 100%;
@@ -159,7 +155,10 @@
 .register-login {
   margin: 18px 0 0 0;
   text-align: center;
-  font-size: 15px;
+  font-size: var(--font-size-base);
+  display: flex;
+  justify-content: center;
+  gap: 12px;
 }
 
 .register-login a {
@@ -174,10 +173,67 @@
   justify-content: center;
   gap: 32px;
   color: var(--footer-text);
-  font-size: 14px;
+  font-size: var(--font-size-md);
 }
 
 .register-footer a {
   color: var(--footer-text);
   text-decoration: underline;
+}
+
+@media screen and (min-width: 1024px) {
+
+  .registercontent {
+    margin-top: 170px;
+    margin-right: 262.6px;
+    margin-left: 262.6px;
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .register-form > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    max-width: 800px; 
+  }
+
+  .mail {
+    max-width: 800px;
+  }
+
+  .register-form input[type="email"],
+  .register-form input[type="password"],
+  .register-form input[type="text"] {
+    flex: 1;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 1px solid #ccc;
+    font-size: var(--font-size-md);
+    outline: none;
+    background: rgba(255, 255, 255, 0.7);
+    height: 24.8px;
+  }
+
+  .register-form h1 {
+    font-size: var(--font-size-base);
+  }
+
+  .register-form p {
+    font-size: var(--font-size-md);
+  }
+
+  .register-form button[type="submit"] {
+    font-size: var(--font-size-lg);
+  }
+
+  .register-footer, .register-footer a, .register-footer p {
+    font-size: var(--font-size-base);
+    color: var(--foreground);
+  }
 }

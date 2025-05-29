@@ -1,7 +1,8 @@
 .profilepagecontent {
-    margin-top: 160px;
-    margin-left: 20px;
-    margin-right:20px;
+  margin-top: 160px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: var(--font-size-base);
 }
 
 .mail {
@@ -20,6 +21,7 @@
   border: none;
   background: transparent;
   cursor: pointer;
+  font-size: var(--font-size-base);
 }
 
 .cta:before {
@@ -28,7 +30,7 @@
   top: 0;
   left: 0;
   display: block;
-  border-radius: 50px;
+  border-radius: 100px;
   background: var(--past-trail-color);
   width: 45px;
   height: 45px;
@@ -37,11 +39,11 @@
 
 .cta span {
   position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-lg);
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--today-trail-color);
+  color: var(--color-go-back);
   padding-right: 10px;
 }
 
@@ -51,7 +53,7 @@
   fill: none;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke: var(--today-trail-color);
+  stroke: var(--color-go-back);
   stroke-width: 2;
   transform: translateX(-5px);
   transition: all 0.3s ease;
@@ -78,6 +80,7 @@
   justify-content: flex-start;
   padding: 0 16px;
   background: var(--background);
+  font-size: var(--font-size-base);
 }
 
 .profile-footer {
@@ -87,7 +90,7 @@
   justify-content: center;
   gap: 32px;
   color: var(--footer-text);
-  font-size: 14px;
+  font-size: var(--font-size-sm);
 }
 
 .profile-header {
@@ -99,6 +102,7 @@
   backdrop-filter: blur(10px);
   border-radius: 16px;
   margin-top: 16px;
+  font-size: var(--font-size-base);
 }
 
 .profile-back {
@@ -109,7 +113,7 @@
   background: transparent;
   border: none;
   color: var(--foreground);
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-family: inherit;
   cursor: pointer;
   padding: 0;
@@ -117,18 +121,70 @@
 }
 
 .profile-content h2 {
-  font-size: 1.5rem;
+  font-size: var(--font-size-xl);
   font-weight: 600;
   margin-bottom: 16px;
 }
 
 .profile-content label {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   font-weight: 500;
   color: var(--background);
 }
 
 .profile-content div {
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   color: var(--background);
+}
+
+@media (min-width: 1024px) {
+  .profilepagecontent {
+    margin-top: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+    font-size: var(--font-size-base);
+  }
+
+  .cta  {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-top: 160px;
+    margin-left: 10px;
+    align-items: center;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: var(--font-size-base);
+  }
+
+  .profile-container {
+    padding: 0 48px;
+    font-size: var(--font-size-base);
+  }
+
+  .profile-header {
+    padding: 32px 24px;
+    margin-top: 32px;
+    border-radius: 20px;
+    font-size: var(--font-size-base);
+  }
+
+  .profile-content h2 {
+    font-size: var(--font-size-xxl);
+  }
+
+  .profile-content label,
+  .profile-content div {
+    font-size: var(--font-size-lg);
+  }
+
+  .profile-footer {
+    padding: 48px 0 20px 0;
+    font-size: var(--font-size-base);
+    color: var(--foreground);
+  }
 }

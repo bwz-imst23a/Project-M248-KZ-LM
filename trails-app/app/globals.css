@@ -1,22 +1,30 @@
-/* Bitte in der :root-Klasse alle Farben korrekt als Variablen speichern, wie sie per Farbrad ausgewählt wurden.
-   Auch die Schriftart und die verschiedenen Schriftgrössen sollen hier bereits als Variablen gespeichert
-   werden (gemäss den Schriftarten und Schriftgrössen im Mockup).
-   Der Background für die Desktopversion muss noch hinzugefügt werden (im 'public'-Ordner) und hier unter der
-   Bedingung der Screen-Grösse verwendet werden.*/
 :root {
-  --background: url('/Mobile_Background.png') center/cover no-repeat;
+  --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 22px;
+  --font-size-xl: 26px;
+  --font-size-xxl: 30px;
+  --font-size-3xl: 34px;
+
   --foreground: #000;
   --today-trail-color: #009BB8;
-  --header-bg: rgba(255, 255, 255, 0.3);
-  --footer-text: #767676;
   --past-trail-color: #F9E8E9;
   --future-trail-color: #FF9A98;
+  --header-bg: rgba(255, 255, 255, 0.3);
+  --footer-text: #767676;
+  --color-go-back: #024059;
+  --background: url('/Mobile_Background.png') center/cover no-repeat;
 }
+
 
 html, body {
   color: var(--foreground);
   background: var(--background);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* An solchen Stellen dann zum Beispiel die definierte Variable für die Schriftart benutzen. */
+  font-family: var(--font-primary);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -66,7 +74,7 @@ html, body {
 }
 
 .icon {
-  font-size: 24px; /* Hier zum Beispiel die definierte Variable für die Schriftgrösse benutzen. */
+  font-size: var(--font-size-lg);
   color: var(--foreground);
   cursor: pointer;
   padding-right: 5px;
@@ -76,12 +84,12 @@ html, body {
   text-align: left;
   padding: 120px 20px 10px 20px;
   color: var(--foreground);
-  font-size: 22px;
+  font-size: var(--font-size-lg);
   font-weight: 500;
 }
 
 .add-icon {
-  font-size: 26px;
+  font-size: var(--font-size-xl);
   color: var(--foreground);
   cursor: pointer;
 }
@@ -114,7 +122,7 @@ html, body {
 
 .trail-text {
   flex-grow: 1;
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-weight: 500;
 }
 
@@ -124,7 +132,7 @@ html, body {
 }
 
 .trail-icon, .edit-icon, .delete-icon, .arrow-icon {
-  font-size: 22px;
+  font-size: var(--font-size-lg);
   color: var(--foreground);
   cursor: pointer;
 }
@@ -135,7 +143,7 @@ html, body {
   opacity: 0;
   transition: max-height 0.3s ease, opacity 0.3s ease;
   padding: 0 20px;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   color: var(--foreground);
 }
 
@@ -155,11 +163,20 @@ html, body {
 }
 
 .footer {
-  margin-top: auto;
-  text-align: center;
-  padding: 40px 20px;
-  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--font-size-sm);
   color: var(--footer-text);
+  padding: 20px;
+  text-align: center;
+}
+
+.footer p,
+.footer a {
+  margin: 0;
+  line-height: 1;
 }
 
 .footer a {
@@ -178,28 +195,6 @@ html, body {
   display: flex;
   align-items: center;
   gap: 12px;
-}
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: var(--background);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.search-bar {
-  width: 100%;
-  padding: 10px 16px;
-  font-size: 16px;
-  border: none;
-  outline: none;
-  border-radius: 16px;
 }
 
 .past-trail {
@@ -221,4 +216,69 @@ html, body {
   opacity: 70%;
   border-style:groove;
   border-color: var(--footer-text);
+}
+
+@media screen and (min-width: 1024px) {
+
+  html, body {
+    font-size: var(--font-size-base);
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 150px auto;
+    padding: 40px;
+    background-color: var(--background);
+    backdrop-filter: blur(8px);
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .login-form h1 {
+    font-size: var(--font-size-xl);
+  }
+
+  .login-form p {
+    font-size: var(--font-size-md);
+  }
+
+  .mail input,
+  input[type="password"] {
+    font-size: var(--font-size-base);
+    padding: 12px;
+  }
+
+  .background-container {
+    filter: blur(4px);
+  }
+
+  .header {
+    width: 93.5%;
+    padding: 20px 32px;
+    height: 100px;
+  }
+
+  .logo {
+    height: 70px;
+  }
+
+  .trail {
+    padding: 24px 32px;
+  }
+
+  .trail-text {
+    font-size: var(--font-size-lg);
+  }
+
+  .footer {
+    font-size: var(--font-size-sm);
+    padding: 10px 40px;
+    color: var(--foreground);
+    text-align: center;
+  }
+
+  .hero-header {
+  margin-top: 50px;
+}
 }

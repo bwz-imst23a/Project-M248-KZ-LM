@@ -14,7 +14,6 @@ import { logoutUser } from "../app/lib/firebaseConfig";
 import { IoMdAddCircleOutline } from "react-icons/io";
 import { fetchTrails, sortTrails, deleteTrail } from "../app/components/FirestoreTrails";
 
-// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function HomePage() {
   const router = useRouter();

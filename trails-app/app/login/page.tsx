@@ -3,18 +3,19 @@
 import { useState } from "react";
 import Link from "next/link";
 import { loginUser } from "../components/FirebaseAuth";
-import "./login.css";
 import { MdOutlineMailOutline } from "react-icons/md";
 import { FaUnlockAlt } from "react-icons/fa";
-import { FaRegEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
+import "./login.css";
 
-// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
 export default function LoginPage() { 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -65,17 +66,28 @@ export default function LoginPage() {
         </div>
         <div>
           <FaUnlockAlt className="ks"></FaUnlockAlt>
-          <input 
-            type="password" 
+          <input
+            type={showPassword ? "text" : "password"}
             name="password"
-            placeholder="Password" 
-            value={formData.password} 
-            onChange={handleChange} 
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
             required
-          />
-         <FaRegEyeSlash></FaRegEyeSlash>
+           />
+         {showPassword ? (
+  <FaRegEye
+    onClick={() => setShowPassword(false)}
+    style={{ cursor: 'pointer' }}
+  />
+) : (
+  <FaRegEyeSlash
+    onClick={() => setShowPassword(true)}
+    style={{ cursor: 'pointer' }}
+  />
+)}
+
         </div>
-        <button type="submit">Sign in</button>
+        <button type="submit" onClick={() => router.push("/")}>Sign in</button>
       </form>
       <div className="login-register">
         <span>Haven't got an account yet? </span>

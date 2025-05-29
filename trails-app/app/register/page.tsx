@@ -7,15 +7,15 @@ import { CiLogin, CiLogout } from "react-icons/ci";
 import { MdAccountCircle, MdOutlineMailOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import "./register.css";
-import { FaRegEyeSlash, FaUnlockAlt } from "react-icons/fa";
+import { FaRegEye, FaRegEyeSlash, FaUnlockAlt } from "react-icons/fa";
 
-
-// Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
-// Bitte alle noch nicht vorhandenen Elemente dieser Seite hinzufügen
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({ name: '', email: '', password: '', confirmPassword: '' });
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
@@ -55,8 +55,8 @@ export default function RegisterPage() {
             <polyline points="8 1 12 5 8 9"></polyline>
           </svg></button>
       </div>
-      <h1>Welcome back</h1>
-      <p>Please enter your details to sign in</p>
+      <h1>Welcome</h1>
+      <p>Please enter your details to sign up</p>
       <form onSubmit={handleSubmit} className="register-form">
         <div className="mail">
           <MdOutlineMailOutline></MdOutlineMailOutline>
@@ -72,28 +72,51 @@ export default function RegisterPage() {
         <div>
           <FaUnlockAlt className="ks"></FaUnlockAlt>
           <input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
             required
           />
-          <FaRegEyeSlash></FaRegEyeSlash>
+
+          {showPassword ? (
+            <FaRegEye
+              onClick={() => setShowPassword(false)}
+              style={{ cursor: 'pointer' }}
+            />
+          ) : (
+            <FaRegEyeSlash
+              onClick={() => setShowPassword(true)}
+              style={{ cursor: 'pointer' }}
+            />
+          )}
+
         </div>
         <div>
           <FaUnlockAlt></FaUnlockAlt>
-          <input
-            type="password"
+            <input
+            type={showConfirmPassword ? "text" : "password"}
             name="confirmPassword"
             placeholder="Confirm Password"
             value={formData.confirmPassword}
             onChange={handleChange}
             required
-          />
-          <FaRegEyeSlash></FaRegEyeSlash>
+            />
+        {showConfirmPassword ? (
+            <FaRegEye
+              onClick={() => setShowConfirmPassword(false)}
+              style={{ cursor: 'pointer' }}
+            />
+          ) : (
+            <FaRegEyeSlash
+              onClick={() => setShowConfirmPassword(true)}
+              style={{ cursor: 'pointer' }}
+            />
+        )}
+
         </div>
-        <button type="submit">Sign up</button>
+        <button type="submit" onClick={() => router.push("/login")}>Sign up</button>
       </form>
       <div className="register-login">
         <span>Already have an account? </span>

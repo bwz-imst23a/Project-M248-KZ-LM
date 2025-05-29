@@ -1,15 +1,11 @@
-/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
-
-/* Styling bitte noch implementieren. */
-
 .login-container {
-    margin-top: 160px;
-    margin-left: 20px;
-    margin-right:20px;
+  margin-top: 160px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .mail {
-    max-width:329.2px;
+  max-width:329.2px;
 }
 
 .cta {
@@ -28,7 +24,7 @@
   left: 0;
   display: block;
   border-radius: 50px;
-  background: #b1dae7;
+  background: var(--past-trail-color);
   width: 45px;
   height: 45px;
   transition: all 0.3s ease;
@@ -36,11 +32,11 @@
 
 .cta span {
   position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
+  font-family: var(--font-primary);
+  font-size: var(--font-size-md);
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #234567;
+  color: var(--color-go-back);
   padding-right: 10px;
 }
 
@@ -58,7 +54,7 @@
 
 .cta:hover:before {
   width: 100%;
-  background: #b1dae7;
+  background: var(--past-trail-color);
 }
 
 .cta:hover svg {
@@ -89,7 +85,7 @@
   background: transparent;
   border: none;
   color: var(--foreground);
-  font-size: 18px;
+  font-size: var(--font-size-md);
   font-family: inherit;
   cursor: pointer;
   padding: 0;
@@ -107,14 +103,14 @@
 
 .login-form h1 {
   margin: 0 0 4px 0;
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 600;
 }
 
 .login-form p {
   margin: 0 0 12px 0;
   color: #888;
-  font-size: 1rem;
+  font-size: var(--font-size-xxl);
 }
 
 .login-form > div {
@@ -129,7 +125,7 @@
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: var(--font-size-md);
   outline: none;
   background: rgba(255,255,255,0.7);
 }
@@ -141,7 +137,7 @@
   border: none;
   background: #222;
   color: #fff;
-  font-size: 18px;
+  font-size: var(--font-size-lg);
   font-weight: 600;
   cursor: pointer;
   width: 100%;
@@ -150,10 +146,10 @@
 .login-register {
   margin: 18px 0 0 0;
   text-align: center;
-  font-size: 15px;
+  font-size: var(--font-size-base);
   display:flex;
   justify-content: center;
-    gap: 12px;
+  gap: 12px;
 }
 
 .login-register a {
@@ -168,10 +164,61 @@
   justify-content: center;
   gap: 32px;
   color: var(--footer-text);
-  font-size: 14px;
+  font-size: var(--font-size-base);
 }
 
 .login-footer a {
   color: var(--footer-text);
   text-decoration: underline;
 }
+
+@media screen and (min-width: 1024px) {
+.login-form input[type="password"],
+.login-form input[type="text"] {
+  flex: 1;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: var(--font-size-md);
+  outline: none;
+  background: rgba(255, 255, 255, 0.7);
+  height: 24.8px;
+}
+
+  .login-container {
+  max-width: 480px;
+  margin: 170px auto 0 auto;
+  padding: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  .login-form h1 {
+  font-size: var(--font-size-xxl);
+  }
+
+  .login-form p {
+  font-size: var(--font-size-md);
+  }
+
+  .login-form input[type="email"],
+  .login-form input[type="password"] {
+  font-size: var(--font-size-md);
+  padding: 12px 16px;
+  }
+
+  .login-form button[type="submit"] {
+  font-size: var(--font-size-lg);
+  }
+
+  .login-footer, .login-footer a, .login-footer p {
+    font-size: var(--font-size-base);
+    color: var(--foreground);
+  }
+
+  .mail {
+  max-width:456px;
+  }
+}
+

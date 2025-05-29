@@ -1,5 +1,3 @@
-/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
-
 .container {
   min-height: 100vh;
   display: flex;
@@ -38,7 +36,7 @@
 }
 
 .header-icons span {
-  font-size: 24px;
+  font-size: var(--font-size-lg);
   color: black;
   cursor: pointer;
 }
@@ -51,7 +49,7 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 600;
   color: var(--foreground);
   margin-bottom: 16px;
@@ -61,7 +59,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 1rem;
+  font-size: var(--font-size-xxl);
   font-weight: 500;
   color: var(--foreground);
 }
@@ -70,7 +68,7 @@
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   outline: none;
   background: rgba(255, 255, 255, 0.7);
   margin-bottom:10px;
@@ -83,7 +81,7 @@
 }
 
 .input-icon .icon {
-  font-size: 20px;
+  font-size: var(--font-size-md);
   color: var(--foreground);
 }
 
@@ -99,7 +97,7 @@ button {
   color: #24292e;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   line-height: 20px;
   list-style: none;
@@ -146,3 +144,20 @@ button:-webkit-details-marker {
   display: none;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  font-size: var(--font-size-sm);
+  color: var(--footer-text);
+  padding: 20px;
+  text-align: center;
+}
+
+.footer p,
+.footer a {
+  margin: 0;
+  line-height: 1;
+  color: var(--foreground);
+}

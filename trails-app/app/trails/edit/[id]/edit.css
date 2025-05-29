@@ -1,5 +1,3 @@
-/* Auch in diesem File die vordefinierten Variabelen für Farben, Schriftart, und Schriftgrössen benutzen. */
-
 .container {
   min-height: 100vh;
   display: flex;
@@ -28,7 +26,7 @@
   background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px var(--background);
   z-index: 1;
 }
 
@@ -43,20 +41,20 @@
 }
 
 .header-icons span {
-  font-size: 24px;
-  color: black;
+  font-size: var(--font-size-lg);
+  color: var(--foreground);
   cursor: pointer;
 }
 
 .form-container {
-  margin-top: 120px;
+  margin-top: 140px;
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
 .title {
-  font-size: 2rem;
+  font-size: var(--font-size-3xl);
   font-weight: 600;
   color: var(--foreground);
   margin-bottom: 16px;
@@ -66,7 +64,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  font-size: 1rem;
+  font-size: var(--font-size-xxl);
   font-weight: 500;
   color: var(--foreground);
 }
@@ -75,7 +73,7 @@
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   outline: none;
   background: rgba(255, 255, 255, 0.7);
   margin-bottom:10px;
@@ -88,14 +86,14 @@
 }
 
 .input-icon .icon {
-  font-size: 20px;
+  font-size: var(--font-size-md);
   color: var(--foreground);
 }
 
 button {
   appearance: none;
   background-color: #fafbfc;
-  border: 1px solid rgba(27, 31, 35, 0.15);
+  border: 1px solid var(--for);
   border-radius: 6px;
   box-shadow:
     rgba(27, 31, 35, 0.04) 0 1px 0,
@@ -104,7 +102,7 @@ button {
   color: #24292e;
   cursor: pointer;
   display: inline-block;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   font-weight: 500;
   line-height: 20px;
   list-style: none;
@@ -151,61 +149,14 @@ button:-webkit-details-marker {
   display: none;
 }
 
-.cta {
-  position: relative;
-  padding: 12px 18px;
-  transition: all 0.2s ease;
-  border: none;
-  background: transparent;
-  cursor: pointer;
+footer {
+  font-size: var(--font-size-sm);
+  padding: 10px 40px;
+  color: var(--foreground);
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top:auto;
+  margin-bottom:10px;
 }
-
-.cta:before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  border-radius: 50px;
-  background: var(--past-trail-color);
-  width: 45px;
-  height: 45px;
-  transition: all 0.3s ease;
-}
-
-.cta span {
-  position: relative;
-  font-family: "Ubuntu", sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  color: var(--today-trail-color);
-  padding-right: 10px;
-}
-
-.cta svg {
-  position: relative;
-  top: 0;
-  fill: none;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke: var(--today-trail-color);
-  stroke-width: 2;
-  transform: translateX(-5px);
-  transition: all 0.3s ease;
-}
-
-.cta:hover:before {
-  width: 100%;
-  background: var(--past-trail-color);
-}
-
-.cta:hover svg {
-  transform: translateX(0);
-}
-
-.cta:active {
-  transform: scale(0.95);
-}
-
-

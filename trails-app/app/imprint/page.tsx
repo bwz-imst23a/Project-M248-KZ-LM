@@ -7,6 +7,7 @@ import { MdAccountCircle } from "react-icons/md";
 import { CiLogin, CiLogout } from "react-icons/ci";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, logoutUser } from "../lib/firebaseConfig";
+import Link from "next/link";
 
 // Bitte Verklinkungen der Seite überprüfen und ggf. anpassen (oder hinzufügen, falls noch nicht vorhanden)
 
@@ -25,30 +26,37 @@ export default function ImprintPage() {
   return (
     <>
       <div className="background-container"></div>
+
       <header className="header">
         <div className="header-left">
-          <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+          <Link href="/">
+            <img src="/Logo.png" alt="Trails Logo" className="logo" />
+          </Link>
+          <Link href="/" className="company-name">
+            RappiTours
+          </Link>
         </div>
 
         <div className="icons-container">
-          <MdAccountCircle
-            className="icon"
-            onClick={() => router.push('/profile')}
-          />
-
           {!user ? (
             <CiLogin
               className="icon"
               onClick={() => router.push('/login')}
             />
           ) : (
-            <CiLogout
-              className="icon"
-              onClick={async () => {
-                await logoutUser();
-                setUser(null);
-              }}
-            />
+            <>
+              <MdAccountCircle
+                className="icon"
+                onClick={() => router.push('/profile')}
+              />
+              <CiLogout
+                className="icon"
+                onClick={async () => {
+                  await logoutUser();
+                  setUser(null);
+                }}
+              />
+            </>
           )}
         </div>
       </header>

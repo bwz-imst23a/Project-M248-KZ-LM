@@ -17,9 +17,11 @@
   --header-bg: rgba(255, 255, 255, 0.3);
   --footer-text: #767676;
   --color-go-back: #024059;
-  --background: url('/Mobile_Background.png') center/cover no-repeat;
+  
+  --mobile-background: url('../public/Mobile_Background.png') center/cover no-repeat;
+  --desktop-background: url('../public/Desktop_Background.png') center/cover no-repeat;
+  --background: var(--mobile-background);
 }
-
 
 html, body {
   color: var(--foreground);
@@ -218,9 +220,19 @@ html, body {
   border-color: var(--footer-text);
 }
 
+.company-name {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  color: var(--foreground);
+  margin-left: 12px;
+  display: none;
+  text-decoration: none;
+}
+
 @media screen and (min-width: 1024px) {
 
   html, body {
+    background: var(--desktop-background);
     font-size: var(--font-size-base);
   }
 
@@ -279,6 +291,10 @@ html, body {
   }
 
   .hero-header {
-  margin-top: 50px;
-}
+    margin-top: 50px;
+  }
+
+  .company-name {
+    display: inline-block;
+  }
 }

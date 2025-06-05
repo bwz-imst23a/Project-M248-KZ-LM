@@ -34,26 +34,34 @@ export default function EditTrailPage() {
   }, [id]);
 
   const handleUpdate = async () => {
-  if (!user || !trail || !id) return;
+    if (!user || !trail || !id) return;
 
-  await editTrail(user.uid, id, trail.name, trail.date);
-  alert("Trail successfully updated!");
-  router.push("../../");
-};
+    await editTrail(user.uid, id, trail.name, trail.date);
+    alert("Trail successfully updated!");
+    router.push("../../");
+  };
 
   return (
     <AuthGuard>
       <div className="container">
         <header className="header">
           <div className="header-left">
-            <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+            <Link href="/">
+              <img src="/Logo.png" alt="Trails Logo" className="logo" />
+            </Link>
+            <Link href="/" className="company-name">
+              RappiTours
+            </Link>
           </div>
+
           <div className="icons-container">
-            <MdAccountCircle className="icon" onClick={() => router.push('/profile')} />
             {!user ? (
               <CiLogin className="icon" onClick={() => router.push('/login')} />
             ) : (
-              <CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); }} />
+              <>
+                <MdAccountCircle className="icon" onClick={() => router.push('/profile')} />
+                <CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); }} />
+              </>
             )}
           </div>
         </header>

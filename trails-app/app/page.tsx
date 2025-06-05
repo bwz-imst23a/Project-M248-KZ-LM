@@ -61,24 +61,30 @@ export default function HomePage() {
   return (
     <>
       <div className="background-container"></div>
-
+      
       <header className="header">
         <div className="header-left">
-          <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+          <Link href="/">
+            <img src="/Logo.png" alt="Trails Logo" className="logo" />
+          </Link>
+          <Link href="/" className="company-name">
+            RappiTours
+          </Link>
         </div>
-
         <div className="icons-container">
           {!user ? (
             <CiLogin className="icon" onClick={() => router.push('/login')} />
           ) : (
-            <><MdAccountCircle className="icon" onClick={() => router.push('/profile')} /><CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); } } /></>
+            <>
+              <MdAccountCircle className="icon" onClick={() => router.push('/profile')} />
+              <CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); }} />
+            </>
           )}
         </div>
       </header>
 
       <section className="hero">
         <div className="hero-header">
-          <h1 className="hero-title">RappiTours</h1>
           {user && (
             <IoMdAddCircleOutline className="add-icon" onClick={() => router.push('/trails/create')} />
           )}

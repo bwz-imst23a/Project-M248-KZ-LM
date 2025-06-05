@@ -29,7 +29,12 @@ export default function Profile() {
       <>
         <header className="header">
           <div className="header-left">
-            <img src="/Mobile_Logo.png" alt="Trails Logo" className="logo" />
+            <Link href="/">
+              <img src="/Logo.png" alt="Trails Logo" className="logo" />
+            </Link>
+            <Link href="/" className="company-name">
+              RappiTours
+            </Link>
           </div>
 
           <div className="icons-container">
@@ -49,25 +54,26 @@ export default function Profile() {
             )}
           </div>
         </header>
-      <div className="profilepagecontent">
-        <div className="profile-content">
-        <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
-            <path d="M1,5 L11,5"></path>
-            <polyline points="8 1 12 5 8 9"></polyline>
-          </svg></button>
-          <h2>Profile</h2>
-          <div>
-            <label>E-mail</label>
-            <div>{email ? email : "Not logged in"}</div>
+
+        <div className="profilepagecontent">
+          <div className="profile-content">
+          <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
+              <path d="M1,5 L11,5"></path>
+              <polyline points="8 1 12 5 8 9"></polyline>
+            </svg></button>
+            <h2>Profile</h2>
+            <div>
+              <label>E-mail</label>
+              <div>{email ? email : "Not logged in"}</div>
+            </div>
           </div>
         </div>
-      </div>
-      <footer className="profile-footer">
-        <span>© 2025 Rappi Tours Inc.</span>
-        <Link href="/imprint" className="imprint-link">Imprint</Link>
-      </footer>
+
+        <footer className="profile-footer">
+          <span>© 2025 Rappi Tours Inc.</span>
+          <Link href="/imprint" className="imprint-link">Imprint</Link>
+        </footer>
       </>
     </AuthGuard>
   );
 }
-

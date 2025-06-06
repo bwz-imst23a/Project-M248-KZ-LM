@@ -43,7 +43,7 @@ export default function EditTrailPage() {
 
   return (
     <AuthGuard>
-      <div className="container">
+      <>
         <header className="header">
           <div className="header-left">
             <Link href="/">
@@ -66,38 +66,42 @@ export default function EditTrailPage() {
           </div>
         </header>
 
-        <main className="form-container">
-          <h1 className="title">Edit Trail</h1>
-          {trail ? (
-            <form onSubmit={(e) => e.preventDefault()}>
-              <label className="label">
-                Trail Name*
-                <input type="text" className="input" value={trail.name} onChange={(e) => setTrail({ ...trail, name: e.target.value })} required />
-              </label>
+        <div className="desktop-wrapper">
+          <main className="form-container">
+            <h1 className="title">Edit Trail</h1>
+            {trail ? (
+              <form onSubmit={(e) => e.preventDefault()}>
+                <label className="label">
+                  Trail Name*
+                  <input type="text" className="input" value={trail.name} onChange={(e) => setTrail({ ...trail, name: e.target.value })} required />
+                </label>
 
-              <label className="label">
-                Date*
-                <input type="date" className="input" value={trail.date} onChange={(e) => setTrail({ ...trail, date: e.target.value })} required />
-              </label>
+                <label className="label">
+                  Date*
+                  <input type="date" className="input" value={trail.date} onChange={(e) => setTrail({ ...trail, date: e.target.value })} required />
+                </label>
 
-              <div className="formbutton">
-                <button type="button" className="buttons" onClick={() => router.back()}>
-                  <MdOutlineCancel /> Cancel
-                </button>
-                <button type="submit" className="buttons" onClick={handleUpdate}>
-                  <FaSave /> Update Trail
-                </button>
-              </div>
-            </form>
-          ) : (
-            <p>Load trail data...</p>
-          )}
-        </main>
-        <footer className="profile-footer">
-        <span>© 2025 Rappi Tours Inc.</span>
-        <Link href="/imprint" className="imprint-link">Imprint</Link>
-      </footer>
-      </div>
+                <div className="formbutton">
+                  <button type="button" className="buttons" onClick={() => router.back()}>
+                    <MdOutlineCancel /> Cancel
+                  </button>
+                  <button type="submit" className="buttons" onClick={handleUpdate}>
+                    <FaSave /> Update Trail
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <p>Load trail data...</p>
+            )}
+          </main>
+
+          <footer className="profile-footer">
+            <span>© 2025 Rappi Tours Inc.</span>
+            <Link href="/imprint" className="imprint-link">Imprint</Link>
+          </footer>
+        </div>
+      </>
     </AuthGuard>
   );
+
 }

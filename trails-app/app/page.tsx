@@ -61,7 +61,7 @@ export default function HomePage() {
   return (
     <>
       <div className="background-container"></div>
-      
+
       <header className="header">
         <div className="header-left">
           <Link href="/">
@@ -83,40 +83,45 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-header">
-          {user && (
-            <IoMdAddCircleOutline className="add-icon" onClick={() => router.push('/trails/create')} />
-          )}
-        </div>
+      <div className="desktop-wrapper">
+        <section className="hero">
+          <div className="hero-header">
+            {user && (
+              <IoMdAddCircleOutline className="add-icon" onClick={() => router.push('/trails/create')} />
+            )}
+          </div>
 
-        {!user ? (
-          <p className="login-prompt">Please log in to manage your trails.</p>
-        ) : (
-          <div className="trails-container">
-            {trails.map((trail) => (
-              <div key={trail.id}>
-                <div className={`trail ${getTrailClass(trail.date)}`}>
-                  <span className="trail-text">{trail.name}</span>
-                  <div className="trail-actions">
-                    <FiEdit2 className="edit-icon" onClick={() => router.push(`/trails/edit/${trail.id}`)} />
-                    <RiDeleteBin5Fill className="delete-icon" onClick={() => handleDelete(trail.id)} />
-                    <IoIosArrowDown className={`arrow-icon ${expandedTrail === trail.id ? 'rotated' : ''}`} onClick={() => toggleTrail(trail.id)} />
+          {!user ? (
+            <p className="login-prompt">Please log in to manage your trails.</p>
+          ) : (
+            <div className="trails-container">
+              {trails.map((trail) => (
+                <div key={trail.id}>
+                  <div className={`trail ${getTrailClass(trail.date)}`}>
+                    <span className="trail-text">{trail.name}</span>
+                    <div className="trail-actions">
+                      <FiEdit2 className="edit-icon" onClick={() => router.push(`/trails/edit/${trail.id}`)} />
+                      <RiDeleteBin5Fill className="delete-icon" onClick={() => handleDelete(trail.id)} />
+                      <IoIosArrowDown className={`arrow-icon ${expandedTrail === trail.id ? 'rotated' : ''}`} onClick={() => toggleTrail(trail.id)} />
+                    </div>
+                  </div>
+                  <div className={`trail-details ${expandedTrail === trail.id ? 'expanded' : ''}`}>
+                    <p>{trail.date}</p>
                   </div>
                 </div>
-                <div className={`trail-details ${expandedTrail === trail.id ? 'expanded' : ''}`}>
-                  <p>{trail.date}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </section>
+              ))}
+            </div>
+          )}
+        </section>
 
-      <footer className="footer">
-        <p>ⓒ 2025 Rappi Tours Inc.</p> 
-        <Link href="/imprint">Imprint</Link>
-      </footer>
+        <footer className="footer">
+          <p>ⓒ 2025 Rappi Tours Inc.</p> 
+          <Link href="/imprint">Imprint</Link>
+        </footer>
+
+      </div>
+      
     </>
   );
+
 }

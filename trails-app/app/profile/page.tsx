@@ -39,41 +39,41 @@ export default function Profile() {
 
           <div className="icons-container">
             {!user ? (
-              <CiLogin
-                className="icon"
-                onClick={() => router.push('/login')}
-              />
+              <CiLogin className="icon" onClick={() => router.push('/login')} />
             ) : (
-              <CiLogout
-                className="icon"
-                onClick={async () => {
-                  await logoutUser();
-                  setUser(null);
-                }}
-              />
+              <CiLogout className="icon" onClick={async () => {
+                await logoutUser();
+                setUser(null);
+              }} />
             )}
           </div>
         </header>
 
-        <div className="profilepagecontent">
-          <div className="profile-content">
-          <button onClick={() => router.back()} className="cta"><span>Go Back</span> <svg width="15px" height="10px" viewBox="0 0 13 10">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
-            </svg></button>
-            <h2>Profile</h2>
-            <div>
-              <label>E-mail</label>
-              <div>{email ? email : "Not logged in"}</div>
+        <div className="desktop-wrapper">
+          <div className="profilepagecontent">
+            <div className="profile-content">
+              <button onClick={() => router.back()} className="cta">
+                <span>Go Back</span> 
+                <svg width="15px" height="10px" viewBox="0 0 13 10">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+              </button>
+              <h2>Profile</h2>
+              <div>
+                <label>E-mail</label>
+                <div>{email ? email : "Not logged in"}</div>
+              </div>
             </div>
           </div>
-        </div>
 
-        <footer className="profile-footer">
-          <span>© 2025 Rappi Tours Inc.</span>
-          <Link href="/imprint" className="imprint-link">Imprint</Link>
-        </footer>
+          <footer className="profile-footer">
+            <span>© 2025 Rappi Tours Inc.</span>
+            <Link href="/imprint" className="imprint-link">Imprint</Link>
+          </footer>
+        </div>
       </>
     </AuthGuard>
   );
+
 }

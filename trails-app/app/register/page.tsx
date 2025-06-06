@@ -54,82 +54,73 @@ export default function RegisterPage() {
         </div>
       </header>
 
-      <div className="registercontent">
-        <div>
-          <button onClick={() => router.back()} className="cta">
-            <span>Go Back</span>
-            <svg width="15px" height="10px" viewBox="0 0 13 10">
-              <path d="M1,5 L11,5"></path>
-              <polyline points="8 1 12 5 8 9"></polyline>
-            </svg>
-          </button>
-        </div>
-        <h1>Welcome</h1>
-        <p>Please enter your details to sign up</p>
-        <form onSubmit={handleSubmit} className="register-form">
-          <div className="mail">
-            <MdOutlineMailOutline />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email address"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+      <div className="desktop-wrapper">
+        <div className="registercontent">
           <div>
-            <FaUnlockAlt className="ks" />
-            <input
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-            {showPassword ? (
-              <FaRegEye
-                onClick={() => setShowPassword(false)}
-                style={{ cursor: "pointer" }}
-              />
-            ) : (
-              <FaRegEyeSlash
-                onClick={() => setShowPassword(true)}
-                style={{ cursor: "pointer" }}
-              />
-            )}
+            <button onClick={() => router.back()} className="cta">
+              <span>Go Back</span>
+              <svg width="15px" height="10px" viewBox="0 0 13 10">
+                <path d="M1,5 L11,5"></path>
+                <polyline points="8 1 12 5 8 9"></polyline>
+              </svg>
+            </button>
           </div>
-          <div>
-            <FaUnlockAlt />
-            <input
-              type={showConfirmPassword ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Confirm Password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-            {showConfirmPassword ? (
-              <FaRegEye
-                onClick={() => setShowConfirmPassword(false)}
-                style={{ cursor: "pointer" }}
+          <h1>Welcome</h1>
+          <p>Please enter your details to sign up</p>
+          <form onSubmit={handleSubmit} className="register-form">
+            <div className="mail">
+              <MdOutlineMailOutline />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                value={formData.email}
+                onChange={handleChange}
+                required
               />
-            ) : (
-              <FaRegEyeSlash
-                onClick={() => setShowConfirmPassword(true)}
-                style={{ cursor: "pointer" }}
+            </div>
+            <div>
+              <FaUnlockAlt className="ks" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
               />
-            )}
+              {showPassword ? (
+                <FaRegEye onClick={() => setShowPassword(false)} style={{ cursor: "pointer" }} />
+              ) : (
+                <FaRegEyeSlash onClick={() => setShowPassword(true)} style={{ cursor: "pointer" }} />
+              )}
+            </div>
+            <div>
+              <FaUnlockAlt />
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm Password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+              {showConfirmPassword ? (
+                <FaRegEye onClick={() => setShowConfirmPassword(false)} style={{ cursor: "pointer" }} />
+              ) : (
+                <FaRegEyeSlash onClick={() => setShowConfirmPassword(true)} style={{ cursor: "pointer" }} />
+              )}
+            </div>
+            <button type="submit" onClick={() => router.push("/login")}>
+              Sign up
+            </button>
+          </form>
+          <div className="register-login">
+            <span>Already have an account? </span>
+            <Link href="/login">Log in here</Link>
           </div>
-          <button type="submit" onClick={() => router.push("/login")}>
-            Sign up
-          </button>
-        </form>
-        <div className="register-login">
-          <span>Already have an account? </span>
-          <Link href="/login">Log in here</Link>
         </div>
+
         <footer className="register-footer">
           <span>© 2025 Rappi Tours Inc.</span>
           <Link href="/imprint">Imprint</Link>
@@ -137,4 +128,5 @@ export default function RegisterPage() {
       </div>
     </>
   );
+
 }

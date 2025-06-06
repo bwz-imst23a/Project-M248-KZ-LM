@@ -46,7 +46,7 @@ export default function CreateTrailPage() {
 
   return (
     <AuthGuard>
-      <div className="container">
+      <>
         <header className="header">
           <div className="header-left">
             <Link href="/">
@@ -59,73 +59,67 @@ export default function CreateTrailPage() {
 
           <div className="icons-container">
             {!user ? (
-              <CiLogin
-                className="icon"
-                onClick={() => router.push('/login')}
-              />
+              <CiLogin className="icon" onClick={() => router.push('/login')} />
             ) : (
               <>
-                <MdAccountCircle
-                  className="icon"
-                  onClick={() => router.push('/profile')}
-                />
-                <CiLogout
-                  className="icon"
-                  onClick={async () => {
-                    await logoutUser();
-                    setUser(null);
-                  }}
-                />
+                <MdAccountCircle className="icon" onClick={() => router.push('/profile')} />
+                <CiLogout className="icon" onClick={async () => {
+                  await logoutUser();
+                  setUser(null);
+                }} />
               </>
             )}
           </div>
         </header>
 
-        <main className="form-container">
-          <h1 className="title">Create Trail</h1>
+        <div className="desktop-wrapper">
+          <main className="form-container">
+            <h1 className="title">Create Trail</h1>
 
-          <form onSubmit={(e) => e.preventDefault()}>
-            <label className="label">
-              Trail Name*
-              <input
-                type="text"
-                className="input"
-                placeholder="Please enter a trail name"
-                required
-                value={trailName}
-                onChange={(e) => setTrailName(e.target.value)}
-              />
-            </label>
-
-            <label className="label">
-              Date*
-              <div className="input-icon">
+            <form onSubmit={(e) => e.preventDefault()}>
+              <label className="label">
+                Trail Name*
                 <input
-                  type="date"
+                  type="text"
                   className="input"
+                  placeholder="Please enter a trail name"
                   required
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
+                  value={trailName}
+                  onChange={(e) => setTrailName(e.target.value)}
                 />
+              </label>
+
+              <label className="label">
+                Date*
+                <div className="input-icon">
+                  <input
+                    type="date"
+                    className="input"
+                    required
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                  />
+                </div>
+              </label>
+
+              <div className="formbutton">
+                <button type="button" className="buttons" onClick={() => router.back()}>
+                  <MdOutlineCancel /> Cancel
+                </button>
+                <button type="submit" className="buttons" onClick={handleSave}> 
+                  <FaSave /> Save Trail
+                </button>
               </div>
-            </label>
+            </form>
+          </main>
 
-            <div className="formbutton">
-              <button type="button" className="buttons" onClick={() => router.back()}>
-                <MdOutlineCancel /> Cancel
-              </button>
-              <button type="submit" className="buttons" onClick={handleSave}> 
-                <FaSave /> Save Trail
-              </button>
-            </div>
-          </form>
-        </main>
-
-        <footer className="footer">
-          <p>ⓒ 2025 Rappi Tours Inc.</p> 
-          <Link href="/imprint">Imprint</Link>
-        </footer>
-      </div>
+          <footer className="footer">
+            <p>ⓒ 2025 Rappi Tours Inc.</p> 
+            <Link href="/imprint">Imprint</Link>
+          </footer>
+        </div>
+      </>
     </AuthGuard>
   );
+
 }

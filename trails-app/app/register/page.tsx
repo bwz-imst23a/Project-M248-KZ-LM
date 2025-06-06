@@ -7,6 +7,8 @@ import { MdOutlineMailOutline } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import "./register.css";
 import { FaRegEye, FaRegEyeSlash, FaUnlockAlt } from "react-icons/fa";
+import { CiLogin, CiLogout } from "react-icons/ci";
+import { logoutUser } from "../lib/firebaseConfig";
 
 
 export default function RegisterPage() {
@@ -14,6 +16,7 @@ export default function RegisterPage() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [user, setUser] = useState<null | any>(null);
 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,6 +54,15 @@ export default function RegisterPage() {
           <Link href="/" className="company-name">
             RappiTours
           </Link>
+        </div>
+        <div className="icons-container">
+          {!user ? (
+            <CiLogin className="icon" onClick={() => router.push('/login')} />
+          ) : (
+            <>
+              <CiLogout className="icon" onClick={async () => { await logoutUser(); setUser(null); }} />
+            </>
+          )}
         </div>
       </header>
 

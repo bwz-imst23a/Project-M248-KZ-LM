@@ -109,8 +109,8 @@
 
 .login-form p {
   margin: 0 0 12px 0;
-  color: #888;
-  font-size: var(--font-size-xxl);
+  color: var(--foreground);
+  font-size: var(--font-size-lg);
 }
 
 .login-form > div {

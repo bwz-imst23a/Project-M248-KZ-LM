@@ -139,9 +139,9 @@
 
 @media (min-width: 1024px) {
   .profilepagecontent {
-    margin-top: 200px;
+    margin-top: 40px;
     margin-left: auto;
-    margin-right: auto;
+    margin-right: 420px;
     max-width: 800px;
     font-size: var(--font-size-base);
   }
@@ -150,7 +150,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    margin-top: 160px;
+    margin-top: 50px;
     margin-left: 10px;
     align-items: center;
     height: 45px;
@@ -174,7 +174,7 @@
   }
 
   .profile-content h2 {
-    font-size: var(--font-size-xxl);
+    font-size: var(--font-size-xl);
   }
 
   .profile-content label,

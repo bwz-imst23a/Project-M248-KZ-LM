@@ -86,23 +86,36 @@ html, body {
 
 .hero {
   text-align: left;
-  padding: 120px 20px 10px 20px;
+  padding: 80px 20px 10px 20px;
   color: var(--foreground);
   font-size: var(--font-size-lg);
   font-weight: 500;
+  margin-top: 50px;
 }
 
 .add-icon {
   font-size: var(--font-size-xl);
   color: var(--foreground);
   cursor: pointer;
+  margin-left: auto;
+  transform: scale(1.2);
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.no-trails-text {
+  font-size: var(--font-size-lg);
+  color: var(--foreground);
+  font-weight: 500;
+  margin-right: auto;
+  margin-right: 10px;
+  line-height: 31.2px;
 }
 
 .hero-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
 }
 
 .trails-container {
@@ -238,6 +251,10 @@ html, body {
     font-size: var(--font-size-base);
   }
 
+  .hero-header {
+    margin-top: 0px;
+  }
+
   .login-container {
     width: 100%;
     max-width: 500px;
@@ -247,6 +264,10 @@ html, body {
     backdrop-filter: blur(8px);
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .trails-heading {
+    margin-bottom: 0px;
   }
 
   .login-form h1 {
@@ -277,6 +298,14 @@ html, body {
     height: 70px;
   }
 
+  .hero {
+  text-align: left;
+  padding: 10px 20px 10px 20px;
+  color: var(--foreground);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+        }
+
   .trail {
     padding: 24px 32px;
   }
@@ -290,10 +319,6 @@ html, body {
     padding: 10px 40px;
     color: var(--foreground);
     text-align: center;
-  }
-
-  .hero-header {
-    margin-top: 50px;
   }
 
   .company-name {

@@ -84,13 +84,21 @@ export default function HomePage() {
       </header>
 
       <div className="desktop-wrapper">
-        <section className="hero">
-          <div className="hero-header">
-            {user && (
-              <IoMdAddCircleOutline className="add-icon" onClick={() => router.push('/trails/create')} />
-            )}
-          </div>
-
+    <section className="hero">
+      {user && <h2 className="trails-heading">Your Trails</h2>}
+    <div className="hero-header">
+    {user && (
+      <>
+        {trails.length === 0 && (
+          <p className="no-trails-text">You don't have any trails yet</p>
+        )}
+        <IoMdAddCircleOutline
+          className="add-icon"
+          onClick={() => router.push('/trails/create')}>
+        </IoMdAddCircleOutline>
+      </>
+    )}
+  </div>
           {!user ? (
             <p className="login-prompt">Please log in to manage your trails.</p>
           ) : (

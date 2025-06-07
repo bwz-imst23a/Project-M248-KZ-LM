@@ -1,3 +1,5 @@
+'use client';
+
 import { auth, createUser, signInUser, logoutUser } from "../lib/firebaseConfig";
 
 export async function registerUser(email: string, password: string) {
